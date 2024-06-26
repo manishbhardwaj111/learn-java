@@ -7,8 +7,6 @@ public class PalindromeString {
         System.out.println(isPalindromeString("madam"));
         System.out.println(isPalindromeString("aa"));
 
-        LinkedHashMap k;
-
     }
 
 
