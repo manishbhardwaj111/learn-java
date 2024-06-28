@@ -3,12 +3,12 @@ package org.learn.thread;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SimpleThreadPool {
+public class CustomThreadPoolWithLinkedList {
     private final List<Worker> workers;
     private final LinkedList<Runnable> taskQueue;
     private volatile boolean isShutdown = false;
 
-    public SimpleThreadPool(int numThreads) {
+    public CustomThreadPoolWithLinkedList(int numThreads) {
         workers = new LinkedList<>();
         taskQueue = new LinkedList<>();
         for (int i = 0; i < numThreads; i++) {
@@ -63,7 +63,7 @@ public class SimpleThreadPool {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        SimpleThreadPool pool = new SimpleThreadPool(3);
+        CustomThreadPoolWithLinkedList pool = new CustomThreadPoolWithLinkedList(3);
 
         for (int i = 0; i < 1000; i++) {
             final int taskID = i;
