@@ -1,15 +1,11 @@
 package org.learn.algorithms;
 
-import java.util.LinkedHashMap;
-
 public class PalindromeString {
     public static void main(String[] args) {
         System.out.println(isPalindromeString("madam"));
         System.out.println(isPalindromeString("aa"));
 
     }
-
-
 
     private static boolean isPalindromeString(String text) {
         if (text!=null && !text.trim().isEmpty()) {

@@ -3,36 +3,34 @@ package org.learn.thread;
 import java.util.concurrent.CountDownLatch;
 
 public class CountDownLatchExample {
-    public static void main(String[] args) throws InterruptedException {
-        int numTasks = 3;
-        CountDownLatch latch = new CountDownLatch(numTasks);
+    public static void main(String[] args) {
+        CountDownLatch latch = new CountDownLatch(2); // Initialize with 2
 
-        for (int i = 0; i < numTasks; i++) {
-            new Thread(new Task(latch)).start();
-        }
+        // T1 and T2 perform tasks and call countDown()
+        Thread T1 = new Thread(() -> {
+            System.out.println("T1 doing task");
+            latch.countDown(); // Decrement count
+            System.out.println("T1 completed task");
+        });
 
-        latch.await(); // wait for all tasks to complete
-        System.out.println("All tasks completed. Proceeding with main thread.");
-    }
+        Thread T2 = new Thread(() -> {
+            System.out.println("T2 doing task");
+            latch.countDown(); // Decrement count
+            System.out.println("T2 completed task");
+        });
 
-    static class Task implements Runnable {
-        private final CountDownLatch latch;
-
-        Task(CountDownLatch latch) {
-            this.latch = latch;
-        }
-
-        @Override
-        public void run() {
+        // T3 waits for T1 and T2 to finish
+        Thread T3 = new Thread(() -> {
             try {
-                System.out.println(Thread.currentThread().getName() + " is working.");
-                Thread.sleep(2000); // simulate work
-                System.out.println(Thread.currentThread().getName() + " completed.");
+                latch.await(); // Wait until count reaches zero
+                System.out.println("T3 can proceed");
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-            } finally {
-                latch.countDown();
             }
-        }
+        });
+
+        T1.start();
+        T2.start();
+        T3.start();
     }
 }

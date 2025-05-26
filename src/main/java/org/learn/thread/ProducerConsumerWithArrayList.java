@@ -9,12 +9,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ProducerConsumerWithArrayList {
     public static void main(String[] args) {
         SharedList sharedList = new SharedList(5); // Set maximum capacity to 5
-
-        Thread producer = new Thread(new Producer(sharedList));
-        Thread consumer = new Thread(new Consumer(sharedList));
-
-        producer.start();
-        consumer.start();
+        new Thread(new Producer(sharedList)).start();
+        new Thread(new Consumer(sharedList)).start();
     }
 }
 
@@ -74,7 +70,7 @@ class Producer implements Runnable {
                 String record = "Record " + i++;
                 sharedList.add(record);
                 System.out.println("Produced: " + record);
-                Thread.sleep(500); // Simulate time taken to produce a record
+            //    Thread.sleep(500); // Simulate time taken to produce a record
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
@@ -97,7 +93,7 @@ class Consumer implements Runnable {
                 String record = sharedList.remove();
                 System.out.println("Consumed: " + record);
                 // Simulate time taken to process a record
-                Thread.sleep(1000);
+             //   Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
