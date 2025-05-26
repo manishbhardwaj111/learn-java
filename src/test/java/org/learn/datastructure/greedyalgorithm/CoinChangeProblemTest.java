@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class CoinChangeTest {
+class CoinChangeProblemTest {
 
     static Stream<TestCase> coinChangeProvider() {
         return Stream.of(

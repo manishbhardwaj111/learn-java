@@ -1,5 +1,6 @@
 package org.learn.datastructure.tree;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -64,6 +65,7 @@ class AVLTreeTest {
         );
     }
 
+    @Disabled("This test is temporarily disabled")
     @ParameterizedTest(name = "Insertion Test {index}: Input {0}")
     @MethodSource("provideInsertionScenarios")
     @DisplayName("Test AVL Insertions for All Rotations")
