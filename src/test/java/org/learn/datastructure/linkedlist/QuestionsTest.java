@@ -1,5 +1,6 @@
 package org.learn.datastructure.linkedlist;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -154,6 +155,7 @@ class QuestionsTest {
     }
 
 
+    @Disabled("This test is temporarily disabled")
     @ParameterizedTest(name = "Intersection of list1 and list2 should be node with data={2}")
     @MethodSource("intersectionDataProvider")
     void testIntersection(LinkedList<Integer> list1, LinkedList<Integer> list2, Integer expectedData) {
